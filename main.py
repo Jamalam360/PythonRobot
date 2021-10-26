@@ -57,14 +57,24 @@ class Ps4Controller(Controller):
         print("L3 Moved! {value}")
 
 
-led = LED(3)
+led1 = LED(2)
+led2 = LED(3)
+led3 = LED(4)
 
 
 def ledToggle():
-    if led.is_active:
-        led.off()
+    if led1.is_active:
+        led1.off()
+        led2.on()
+        led3.off()
+    elif led2.is_active:
+        led1.off()
+        led2.off()
+        led3.on()
     else:
-        led.on()
+        led1.on()
+        led2.off()
+        led3.off()
 
 
 controller = Ps4Controller(interface="/dev/input/js0", connecting_using_ds4drv=False)
