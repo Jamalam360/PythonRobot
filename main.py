@@ -1,4 +1,4 @@
-from gpiozero import Servo
+from gpiozero import Servo, LED
 from pyPS4Controller.controller import Controller
 
 
@@ -51,10 +51,20 @@ class Ps4Controller(Controller):
         Controller.__init__(self, **kwargs)
 
     def on_x_press(self):
-        print("Hello, world!")
+        ledToggle()
 
     def on_L3_up(self, value):
         print("L3 Moved! {value}")
+
+
+led = LED(3)
+
+
+def ledToggle():
+    if led.is_active:
+        led.off()
+    else:
+        led.on()
 
 
 controller = Ps4Controller(interface="/dev/input/js0", connecting_using_ds4drv=False)
